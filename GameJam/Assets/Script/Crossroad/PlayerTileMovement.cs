@@ -7,9 +7,8 @@ using UnityEngine.Tilemaps;
 public class PlayerTileMovement : MonoBehaviour
 {
     private CrossyRoadInput input;
-    [SerializeField] private Tilemap groundTilemap;
-    [SerializeField] private Tilemap boundariesTilemap;
-
+    [SerializeField] private Sprite roadSprite;
+    [SerializeField] private Tilemap groundTilemap, boundariesTilemap, roadTilemap;
     private void OnEnable()
     {
         input.Enable();
@@ -27,6 +26,10 @@ public class PlayerTileMovement : MonoBehaviour
     {
         if (CanMove(direction))
             transform.position += (Vector3)direction;
+        //if moved on road stop movement and play gameover screen
+        Vector3Int currentPosition = groundTilemap.WorldToCell(transform.position);
+        if(groundTilemap.GetSprite(currentPosition) == roadSprite)
+            /*Game over*/ print("frogs fuckin ded");
     }
 
     private bool CanMove(Vector2 direction)
@@ -35,5 +38,7 @@ public class PlayerTileMovement : MonoBehaviour
         if(!groundTilemap.HasTile(gridPosition) || boundariesTilemap.HasTile(gridPosition))
             return false;
         return true;
+        
+        boundariesTilemap.SetTile(gridPosition, null);
     }
 }
