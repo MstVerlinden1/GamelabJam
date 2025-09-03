@@ -41,4 +41,8 @@ public class PlayerTileMovement : MonoBehaviour
         
         boundariesTilemap.SetTile(gridPosition, null);
     }
+    private void OnBecameInvisible()
+    {
+        print("Game over");
+    }
 }
