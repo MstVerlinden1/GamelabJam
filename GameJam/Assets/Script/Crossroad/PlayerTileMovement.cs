@@ -8,7 +8,7 @@ public class PlayerTileMovement : MonoBehaviour
 {
     private CrossyRoadInput input;
     [SerializeField] private Sprite roadSprite;
-    [SerializeField] private Tilemap groundTilemap, boundariesTilemap, roadTilemap;
+    [SerializeField] private Tilemap groundTilemap, boundariesTilemap;
     private void OnEnable()
     {
         input.Enable();
@@ -28,8 +28,8 @@ public class PlayerTileMovement : MonoBehaviour
             transform.position += (Vector3)direction;
         //if moved on road stop movement and play gameover screen
         Vector3Int currentPosition = groundTilemap.WorldToCell(transform.position);
-        if(groundTilemap.GetSprite(currentPosition) == roadSprite)
-            /*Game over*/ print("frogs fuckin ded");
+        if(groundTilemap.GetSprite(currentPosition) == roadSprite) 
+            CrossroadManager.instance.GameOver(); /*Game over*/
     }
 
     private bool CanMove(Vector2 direction)
@@ -38,11 +38,9 @@ public class PlayerTileMovement : MonoBehaviour
         if(!groundTilemap.HasTile(gridPosition) || boundariesTilemap.HasTile(gridPosition))
             return false;
         return true;
-        
-        boundariesTilemap.SetTile(gridPosition, null);
     }
     private void OnBecameInvisible()
     {
-        print("Game over");
+        CrossroadManager.instance.GameOver(); /*Game over*/
     }
 }
