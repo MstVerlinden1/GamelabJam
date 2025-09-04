@@ -13,6 +13,7 @@ public class SwitchingScript : MonoBehaviour
 
     private void OnEnable()
     {
+        GameManager.instance.startGame = false;
         if (microgames != null && microgames.Length > 0)
         {
             _chosenMicrogame = microgames[Random.Range(0, microgames.Length)];
@@ -32,6 +33,6 @@ public class SwitchingScript : MonoBehaviour
     private void OnDisable()
     {
         // Play Method of said Microgame
-        // _chosenMicrogame.GetComponent<MicroGameManager>().PlayGame()
+        GameManager.instance.startGame = true;
     }
 }

@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CrossroadManager : MonoBehaviour
@@ -27,6 +25,7 @@ public class CrossroadManager : MonoBehaviour
 
     private void Update()
     {
+        started = GameManager.instance.startGame;
         //once started enable script so the camare moves, starts a time and one timer reaches the max time the camera stops again
         if (started)
         {

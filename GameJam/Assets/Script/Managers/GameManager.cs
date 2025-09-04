@@ -24,4 +24,6 @@ public class GameManager : MonoBehaviour
     
     [Tooltip("Set if the player won the last microgame.")]
     public bool winGame = false;
+    [HideInInspector]
+    public bool startGame = false;
 }
