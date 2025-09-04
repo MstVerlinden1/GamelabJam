@@ -5209,7 +5209,7 @@ MonoBehaviour:
   crossroadCamera: {fileID: 852976904}
   winCollider: {fileID: 2080558977}
   maxTime: 11
-  started: 0
+  started: 1
 --- !u!1 &356758817
 GameObject:
   m_ObjectHideFlags: 0
