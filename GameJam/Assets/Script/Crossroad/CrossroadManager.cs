@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CrossroadManager : MonoBehaviour
@@ -25,9 +26,27 @@ public class CrossroadManager : MonoBehaviour
             playerMovement.enabled = false;
     }
 
+    private void OnDestroy()
+    {
+        if (instance == this)
+        {
+            instance = null; 
+            if (GameManager.instance != null)
+                GameManager.instance.gameSwitcher.SetActive(true);
+        }
+    }
+
     private void Update()
     {
-        started = GameManager.instance.startGame;
+        if (GameManager.instance != null)
+        {
+            if (GameManager.instance.gamePlayType != GamePlayType.Running && GameManager.instance.startGame)
+                return;
+            
+            started = GameManager.instance.startGame;
+        }
+        else started = true;
+        
         //once started enable script so the camare moves, starts a time and one timer reaches the max time the camera stops again
         if (started)
         {
@@ -41,19 +60,29 @@ public class CrossroadManager : MonoBehaviour
             if (timer >= maxTime)
             {
                 GameOver();
+                if (GameManager.instance != null)
+                    GameManager.instance.winGame = true;
             }
         }
 
         if (_gameOver)
         {
-            carTransform.position = new Vector3(Mathf.Lerp(carTransform.position.x,playerTransform.position.x + offset,5f*Time.deltaTime),carTransform.position.y,carTransform.position.z);
+            if (GameManager.instance != null && !GameManager.instance.winGame)
+                carTransform.position = new Vector3(Mathf.Lerp(carTransform.position.x,playerTransform.position.x + offset,5f*Time.deltaTime),carTransform.position.y,carTransform.position.z);
+            
+            if ((int)carTransform.position.x == (int)(playerTransform.position.x + offset) && GameManager.instance != null || GameManager.instance == null || GameManager.instance != null && GameManager.instance.winGame)
+                Destroy(gameObject, 1f);
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
+        if (GameManager.instance != null && GameManager.instance.gamePlayType != GamePlayType.Running)
+            return;
+        
         if (collision.gameObject.CompareTag("Player"))
         {
-            GameManager.instance.winGame = true;
+            if (GameManager.instance != null)
+                GameManager.instance.winGame = false;
         }
     }
 

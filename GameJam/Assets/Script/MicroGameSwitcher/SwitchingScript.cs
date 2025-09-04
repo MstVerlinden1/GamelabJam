@@ -21,7 +21,7 @@ public class SwitchingScript : MonoBehaviour
             if (_chosenMicrogame.prefab != null)
             {
                 _chosenMicrogameObject = Instantiate(_chosenMicrogame.prefab);
-                _chosenMicrogameObject.transform.position = new Vector3(0,0,10);
+                _chosenMicrogameObject.transform.position = new Vector3(0,0,5);
             }
 
             if (descriptionText != null)

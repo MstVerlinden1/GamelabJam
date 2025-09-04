@@ -21,6 +21,9 @@ public class PlayerTileMovement : MonoBehaviour
     }
     private void OnMove(Vector2 direction)
     {
+        if (GameManager.instance != null && GameManager.instance.gamePlayType != GamePlayType.Running && GameManager.instance.startGame)
+            return;
+        
         if (CanMove(direction))
             transform.position += (Vector3)direction;
         //if moved on road stop movement and play gameover screen
@@ -29,6 +32,8 @@ public class PlayerTileMovement : MonoBehaviour
         {
             CrossroadManager.instance.GameOver(); /*Game over*/
             CrossroadManager.instance.GameOver();
+            if (GameManager.instance != null)
+                GameManager.instance.winGame = false;
         }
     }
 
