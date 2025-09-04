@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -32,8 +33,14 @@ public class MicroGameSwitcherScript : MonoBehaviour
 
         animator = GetComponent<Animator>();
         _pNextAnimID = Animator.StringToHash("NextAnimation");
+        animator.Play("NextGameTransition");
     }
-    
+
+    private void OnEnable()
+    {
+        animator.Play("Empty");    
+    }
+
     #endregion
     
     #region Animations

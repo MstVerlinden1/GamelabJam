@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,6 +18,10 @@ public class BalancingScript : MonoBehaviour
     private float fallingSpeed = -12.0f;
     [SerializeField, Tooltip("Speed of how fast the character is falling.")]
     private float startDelay = 1.0f;
+    [SerializeField, Tooltip("How long after the game starts until the game ends.")]
+    private float timeUntilCompletion = 5f;
+    [SerializeField, Tooltip("The speed the character rotates at the start of the game.")]
+    private float startingSpeed = 0.01f;
     
     private float _balancingValue = 0;
     private float _xOldMousePosition = 0;
@@ -26,6 +29,7 @@ public class BalancingScript : MonoBehaviour
     private float _balancingMomentum = 0.0f;
 
     private float timer = 0;
+    private bool gameStarted = false;
     
     private InputSystem_Actions _inputSystem;
     private InputAction _mouseAction;
@@ -40,8 +44,6 @@ public class BalancingScript : MonoBehaviour
         Debug.Log(_inputSystem.ToString());
         _mouseAction = _inputSystem.BalancingMicrogame.Mouse;
         _mouseAction.Enable();
-        Mouse.current.WarpCursorPosition(new Vector2((float)Screen.width/2, (float)Screen.height/2));
-        _xOldMousePosition = (float)Screen.width / 2;
     }
 
     private void OnDisable()
@@ -52,8 +54,9 @@ public class BalancingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-        if (timer >= startDelay)
+        UpdateTimer();
+        
+        if (gameStarted)
         {
             if ((int)Mathf.Abs(_balancingValue) == 1)
             {
@@ -101,7 +104,40 @@ public class BalancingScript : MonoBehaviour
             }
         }
         
-        // game over
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        Destroy(gameObject);
+        Debug.Log(GameManager.instance);
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.gameSwitcher.SetActive(true);
+            Debug.Log($"Game Switcher active? {GameManager.instance.gameSwitcher.activeSelf}");
+        }
+    }
+    
+    private void UpdateTimer()
+    {
+        if (GameManager.instance == null)
+            return;
+        if (!GameManager.instance.startGame)
+            return;
         
+        timer += Time.deltaTime;
+
+        if (timer >= startDelay && !gameStarted)
+        {
+            _xOldMousePosition = _mouseAction.ReadValue<Vector2>().x;
+            _balancingMomentum = Random.Range(-startingSpeed, startingSpeed);
+            timer = 0.0f;
+            gameStarted = true;
+        }
+
+        if (timer >= timeUntilCompletion && gameStarted)
+        {
+            EndGame();
+        }
     }
 }

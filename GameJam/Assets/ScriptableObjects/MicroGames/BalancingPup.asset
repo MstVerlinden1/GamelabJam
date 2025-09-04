@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64799e14b2eb5f648b5691473b85618e, type: 3}
+  m_Name: BalancingPup
+  m_EditorClassIdentifier: Assembly-CSharp::MicroGamesScriptableObjects
+  name: Balancing Pup
+  description: Balance the pup with your mouse!
+  prefab: {fileID: 5540742325917035010, guid: 7f6924c97366d5e438e194b2b842adc3, type: 3}

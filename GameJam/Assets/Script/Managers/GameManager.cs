@@ -12,18 +12,37 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
-        else
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
     }
-    
+
+    private void OnDestroy()
+    {
+        instance = null;
+    }
+
+    private void OnEnable()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
+    private void OnDisable()
+    {
+        instance = null;
+    }
+
     #endregion
     
     [Tooltip("Set if the player won the last microgame.")]
     public bool winGame = false;
     [HideInInspector]
     public bool startGame = false;
+    [Tooltip("GameSwitcher")]
+    public GameObject gameSwitcher;
 }
