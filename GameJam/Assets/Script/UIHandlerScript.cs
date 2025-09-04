@@ -12,9 +12,19 @@ public class UIHandlerScript : MonoBehaviour
         SceneManager.LoadScene(gameScene.name);
     }
 
+    public void RetryGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void ExitGame()
     {
         Application.Quit();
         Debug.Log("Exiting game");
+    }
+
+    public void ContinueGame()
+    {
+        GameManager.instance.ChangeGamePlayType(GamePlayType.Running);
     }
 }
