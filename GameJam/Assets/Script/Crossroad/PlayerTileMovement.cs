@@ -28,7 +28,7 @@ public class PlayerTileMovement : MonoBehaviour
         if (groundTilemap.GetSprite(currentPosition) == roadSprite)
         {
             CrossroadManager.instance.GameOver(); /*Game over*/
-            Debug.Log("poopoo" + gameObject.name);
+            CrossroadManager.instance.GameOver();
         }
     }
 

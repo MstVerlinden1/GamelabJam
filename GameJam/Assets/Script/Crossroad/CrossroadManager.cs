@@ -6,6 +6,8 @@ public class CrossroadManager : MonoBehaviour
     [SerializeField] private CrossroadCamera crossroadCamera;
     [SerializeField] private Collider2D winCollider;
     [SerializeField] private float maxTime;
+    [SerializeField] private Transform carTransform,playerTransform;
+    [SerializeField] private float offset;
     public bool started = false;
     public static CrossroadManager instance;
     private float timer;
@@ -40,6 +42,11 @@ public class CrossroadManager : MonoBehaviour
             {
                 GameOver();
             }
+        }
+
+        if (_gameOver)
+        {
+            carTransform.position = new Vector3(Mathf.Lerp(carTransform.position.x,playerTransform.position.x + offset,5f*Time.deltaTime),carTransform.position.y,carTransform.position.z);
         }
     }
     private void OnCollisionEnter(Collision collision)

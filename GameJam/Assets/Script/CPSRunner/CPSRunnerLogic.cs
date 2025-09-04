@@ -1,17 +1,16 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class CPSRunnerLogic : MonoBehaviour
 {
-    [SerializeField] private Transform player, enemy;
-    [SerializeField] private float speed;
-    private CPSRunnerInput input;
-    private int clicksThisSecond;
-    private int currentCPS;
-    private float cpsTimer;
-    private float time;
+    [SerializeField] private Transform player;
     [SerializeField] private float maxTime = 10f;
+    [SerializeField] private float maxClicks = 10f;
+    [SerializeField] private float minSize, maxSize, minY, maxY;
+    [SerializeField] private float speed;
+    private float timer;
+    private CPSRunnerInput input;
+    [SerializeField]private int clicks;
     public bool started = false;
     private bool won = false;
 
@@ -33,54 +32,31 @@ public class CPSRunnerLogic : MonoBehaviour
 
     private void Update()
     {
-        if (won)
-            OnWin();
         if (started)
         {
-            time += Time.deltaTime;
-            cpsTimer += Time.deltaTime;
-            if (time <= 2f)
+            timer += Time.deltaTime;
+            if (timer >= maxTime && clicks <= maxClicks)
             {
-                currentCPS = 2;
-                
-            }
-            PartObjects();
-            if (time >= maxTime)
-            {
-                started = false;
-                won = true;
-                print("You win");
+                //lose
+                print("lose");
             }
 
-            if (player.position.y < enemy.position.y +1)
+            if (timer <= maxTime && clicks >= maxClicks)
             {
-                started = false;
-                print("You lose");
+                //YOU WINNNNNN WOWOWEEEEE
+                print("win");
             }
-        }
-        if (cpsTimer >= 1f)
-        {
-            /*calculate current clicks er second add it to currentCPS then reset the clicksthissecond and time*/
-            currentCPS = clicksThisSecond;
-            clicksThisSecond = 0;
-            cpsTimer = 0;
         }
     }
     void OnClick()
     {
-        clicksThisSecond++;
-    }
-
-    private void PartObjects()
-    {
-        Vector3 newDistance = enemy.position + new Vector3(0, currentCPS, 0);
-        Vector3 newis = Vector3.Lerp(player.position,newDistance , speed * Time.deltaTime);
-        player.position = newis;
-    }
-
-    private void OnWin()
-    {
-        player.position += new Vector3(0, 5 * Time.deltaTime, 0);
-        enemy.position -= new Vector3(0, 5 * Time.deltaTime, 0);
+        if (started && player.localScale.x <= maxSize)
+        {
+            clicks++;
+            float temp = maxSize / maxClicks;
+            player.localScale += new Vector3(temp, temp, temp);
+            float temp1 = maxY / maxSize;
+            player.position -= new Vector3(0, temp1, 0);
+        }
     }
 }
