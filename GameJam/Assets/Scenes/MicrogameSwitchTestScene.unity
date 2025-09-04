@@ -420,6 +420,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1729098612953271682, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8770001503089466214, guid: 3a9cb4e271f1837479974fb02c41f242, type: 3}
     - target: {fileID: 2574581929811474707, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -464,8 +468,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: MicroGameSwitcher
       objectReference: {fileID: 0}
+    - target: {fileID: 6255216219716568290, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6255216219716568290, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277453554814058020, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277453554814058020, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277453554814058020, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091794834638357015, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8293731620650296807, guid: 86ce9017d99128e44a8bcb2a4d85d023, type: 3}
+    - target: {fileID: 8091794834638357015, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091794834638357015, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8091794834638357015, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2225166479743391940, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+    - {fileID: 4371602322939792457, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+    - {fileID: 8067963481917849742, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
