@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class CPSRunnerLogic : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField] private Transform player, enemy;
     [SerializeField] private float maxTime = 10f;
     [SerializeField] private float maxClicks = 10f;
     [SerializeField] private float minSize, maxSize, minY, maxY;
-    [SerializeField] private float speed;
+    [SerializeField] private float enemyBuffIndex;
     private float timer;
     private CPSRunnerInput input;
     [SerializeField]private int clicks;
@@ -35,28 +35,34 @@ public class CPSRunnerLogic : MonoBehaviour
         if (started)
         {
             timer += Time.deltaTime;
-            if (timer >= maxTime && clicks <= maxClicks)
-            {
-                //lose
-                print("lose");
-            }
-
-            if (timer <= maxTime && clicks >= maxClicks)
-            {
-                //YOU WINNNNNN WOWOWEEEEE
-                print("win");
-            }
+        }
+        if (timer >= maxTime && clicks <= maxClicks)
+        {
+            //lose
+            print("lose");
+        }
+        if (timer <= maxTime && clicks >= maxClicks)
+        {
+            //YOU WINNNNNN WOWOWEEEEE
+            print("win");
         }
     }
     void OnClick()
     {
-        if (started && player.localScale.x <= maxSize)
+        if (started)
         {
             clicks++;
             float temp = maxSize / maxClicks;
             player.localScale += new Vector3(temp, temp, temp);
-            float temp1 = maxY / maxSize;
+            enemy.localScale += new Vector3(temp * enemyBuffIndex, temp * enemyBuffIndex, temp * enemyBuffIndex);
+            float temp1 = maxY / maxClicks;
             player.position -= new Vector3(0, temp1, 0);
+            enemy.position -= new Vector3(0, temp1 * enemyBuffIndex, 0);
+            if (clicks == maxClicks)
+            {
+                started = false;
+            }
+            print("wiener");
         }
     }
 }
