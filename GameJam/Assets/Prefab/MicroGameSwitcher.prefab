@@ -751,6 +751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   microgames:
   - {fileID: 11400000, guid: d9a2e83c2af622e4f8ddee984e5685ec, type: 2}
+  descriptionText: {fileID: 6820528688502449476}
 --- !u!1 &7609556631891725390
 GameObject:
   m_ObjectHideFlags: 0
