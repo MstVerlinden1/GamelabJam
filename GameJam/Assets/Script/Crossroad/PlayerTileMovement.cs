@@ -29,7 +29,7 @@ public class PlayerTileMovement : MonoBehaviour
         //if moved on road stop movement and play gameover screen
         Vector3Int currentPosition = groundTilemap.WorldToCell(transform.position);
         if(groundTilemap.GetSprite(currentPosition) == roadSprite) 
-            CrossroadManager.instance.GameOver(); /*Game over*/
+            CrossroadManager.instance.GameOver(); /*Game over*/ print("poopoo" + gameObject.name);
     }
 
     private bool CanMove(Vector2 direction)

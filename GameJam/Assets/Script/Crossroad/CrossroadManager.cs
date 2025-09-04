@@ -14,7 +14,7 @@ public class CrossroadManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null) { instance = this; DontDestroyOnLoad(gameObject);}
+        if (instance == null) { instance = this; }
         else { Destroy(gameObject); }
         //once game is Enabled turn the camera movement script off to start it from gamemanager and stops player movement untill game started
         if (crossroadCamera.enabled == true)
