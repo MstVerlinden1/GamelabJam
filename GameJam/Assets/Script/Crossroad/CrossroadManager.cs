@@ -11,6 +11,8 @@ public class CrossroadManager : MonoBehaviour
     public bool started = false;
     public static CrossroadManager instance;
     private float timer;
+    
+    private bool _gameOver = false;
 
     private void Awake()
     {
@@ -28,8 +30,12 @@ public class CrossroadManager : MonoBehaviour
         //once started enable script so the camare moves, starts a time and one timer reaches the max time the camera stops again
         if (started)
         {
-            crossroadCamera.enabled = true;
-            playerMovement.enabled = true;
+            if (!_gameOver)
+            {
+                crossroadCamera.enabled = true;
+                playerMovement.enabled = true;
+            }
+            
             timer += Time.deltaTime;
             if (timer >= maxTime)
             {
@@ -50,5 +56,6 @@ public class CrossroadManager : MonoBehaviour
         //stops camera from moving again and stops player from moving further
         crossroadCamera.enabled = false;
         playerMovement.enabled = false;
+        _gameOver = true;
     }
 }

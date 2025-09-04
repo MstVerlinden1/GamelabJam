@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class UIHandlerScript : MonoBehaviour
 {
     [SerializeField, Tooltip("The scene where the game is played.")]
-    private SceneAsset gameScene;
+    private Scene gameScene;
 
     public void StartGame()
     {

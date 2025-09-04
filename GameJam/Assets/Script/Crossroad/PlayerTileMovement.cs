@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -28,8 +25,11 @@ public class PlayerTileMovement : MonoBehaviour
             transform.position += (Vector3)direction;
         //if moved on road stop movement and play gameover screen
         Vector3Int currentPosition = groundTilemap.WorldToCell(transform.position);
-        if(groundTilemap.GetSprite(currentPosition) == roadSprite) 
-            CrossroadManager.instance.GameOver(); /*Game over*/ print("poopoo" + gameObject.name);
+        if (groundTilemap.GetSprite(currentPosition) == roadSprite)
+        {
+            CrossroadManager.instance.GameOver(); /*Game over*/
+            Debug.Log("poopoo" + gameObject.name);
+        }
     }
 
     private bool CanMove(Vector2 direction)
