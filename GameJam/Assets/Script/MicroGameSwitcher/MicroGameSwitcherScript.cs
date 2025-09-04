@@ -17,7 +17,6 @@ public class MicroGameSwitcherScript : MonoBehaviour
     private int _pNextAnimID;
     private bool _isPlaying;
     
-    private int _score = 0;
     private bool _UIUpdated = false;
     
     private bool _gameOver = false;
@@ -47,7 +46,7 @@ public class MicroGameSwitcherScript : MonoBehaviour
     
     void Update()
     {
-        if (animator == null && _gameOver)
+        if (animator == null && GameManager.instance.gamePlayType != GamePlayType.Running)
             return;
         
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Empty") && !AnimatorPlaying())
@@ -83,6 +82,11 @@ public class MicroGameSwitcherScript : MonoBehaviour
             {
                 _UIUpdated = true;
                 RemoveLife();
+            }
+
+            if (GameManager.instance.gamePlayType == GamePlayType.GameOver)
+            {
+                return;
             }
             
             animator.SetTrigger(_pNextAnimID);  
@@ -127,14 +131,20 @@ public class MicroGameSwitcherScript : MonoBehaviour
             lifesRemoved++;
         }
 
-        _gameOver = lifesRemoved >= lifes.Length;
+        if (lifesRemoved >= lifes.Length)
+        {
+            GameManager.instance.ChangeGamePlayType(GamePlayType.GameOver);
+        }
     }
 
     void AddPoint()
     {
-        _score++;
+        if (GameManager.instance == null)
+            return;
         
-        scoreCounter.SetText(_score.ToString());
+        GameManager.instance.score++;
+        
+        scoreCounter.SetText(GameManager.instance.score.ToString());
     }
     
     #endregion

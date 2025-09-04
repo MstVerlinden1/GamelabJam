@@ -54,6 +54,10 @@ public class BalancingScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(GameManager.instance.gamePlayType);
+        if (GameManager.instance.gamePlayType != GamePlayType.Running)
+            return;
+        
         UpdateTimer();
         
         if (gameStarted)

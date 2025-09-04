@@ -44,8 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 628bf6d8778bedb4d895ff0c9292a8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  winGame: 0
+  gamePlayType: 0
   startGame: 0
+  winGame: 0
+  gameSwitcher: {fileID: 0}
+  gameOverMenu: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  _inputActionReference: {fileID: 2497776353025395559, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
 --- !u!1 &8224832802800709015
 GameObject:
   m_ObjectHideFlags: 0
