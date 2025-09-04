@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "name": "CPSRunnerInput",
+    "maps": [
+        {
+            "name": "PlayerAction",
+            "id": "60f6383e-db9b-4cd1-8089-2f99bfc29469",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "6569f17e-3713-491a-9de8-ce6cc34b9cc5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "bb180bd4-0efa-48c7-9ad4-c5e486a149f6",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
