@@ -46,7 +46,7 @@ public class CrossroadManager : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            /*win game gj buddy*/
+            GameManager.instance.winGame = true;
         }
     }
 
