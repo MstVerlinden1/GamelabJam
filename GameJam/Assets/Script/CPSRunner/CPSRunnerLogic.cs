@@ -8,7 +8,7 @@ public class CPSRunnerLogic : MonoBehaviour
     [SerializeField] private float maxClicks = 10f;
     [SerializeField] private float minSize, maxSize, minY, maxY;
     [SerializeField] private float enemyBuffIndex;
-    private float timer;
+    private float timer = 0;
     private CPSRunnerInput input;
     [SerializeField]private int clicks;
     public bool started = false;
@@ -42,7 +42,10 @@ public class CPSRunnerLogic : MonoBehaviour
         }
         else started = true;
         
-        if (timer >= maxTime && clicks <= maxClicks && started)
+        if (started)
+            timer += Time.deltaTime;
+        
+        if (timer > maxTime && clicks < maxClicks && started)
         {
             //lose
             print("lose");
@@ -83,5 +86,11 @@ public class CPSRunnerLogic : MonoBehaviour
         player.GetComponent<Animator>().enabled = false;
         enemy.GetComponent<Animator>().enabled = false;
         started = false;
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.startGame = false;
+            GameManager.instance.gameSwitcher.SetActive(true);
+        }
+        Destroy(gameObject);
     }
 }
