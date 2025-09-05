@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -6,6 +8,9 @@ public class PlayerTileMovement : MonoBehaviour
     private CrossyRoadInput input;
     [SerializeField] private Sprite roadSprite;
     [SerializeField] private Tilemap groundTilemap, boundariesTilemap;
+
+    private Animator _animator;
+    
     private void OnEnable()
     {
         input.Enable();
@@ -18,6 +23,7 @@ public class PlayerTileMovement : MonoBehaviour
     {
         input = new CrossyRoadInput();
         input.Player.Move.performed += ctx => OnMove(ctx.ReadValue<Vector2>());
+        _animator = GetComponent<Animator>();
     }
     private void OnMove(Vector2 direction)
     {
@@ -25,7 +31,18 @@ public class PlayerTileMovement : MonoBehaviour
             return;
         
         if (CanMove(direction))
+        {
             transform.position += (Vector3)direction;
+            _animator.SetTrigger("Jump");
+            if (direction == Vector2.left)
+                transform.rotation = Quaternion.Euler(0, 0, 90);
+            else if (direction == Vector2.right)
+                transform.rotation = Quaternion.Euler(0, 0, 270);
+            else if (direction == Vector2.up)
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            else if (direction == Vector2.down)
+                transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
         //if moved on road stop movement and play gameover screen
         Vector3Int currentPosition = groundTilemap.WorldToCell(transform.position);
         if (groundTilemap.GetSprite(currentPosition) == roadSprite)
