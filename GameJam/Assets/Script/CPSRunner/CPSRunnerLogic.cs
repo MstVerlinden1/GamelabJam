@@ -26,6 +26,7 @@ public class CPSRunnerLogic : MonoBehaviour
 
     private void Awake()
     {
+        //make and attach new input action asset to input and subscribe to Onclick each time Click is performed
         input = new CPSRunnerInput();
         input.PlayerAction.Click.performed += ctx => OnClick();
     }
@@ -40,6 +41,7 @@ public class CPSRunnerLogic : MonoBehaviour
             started = GameManager.instance.startGame;
         }
         else started = true;
+        
         if (timer >= maxTime && clicks <= maxClicks && started)
         {
             //lose
@@ -77,6 +79,7 @@ public class CPSRunnerLogic : MonoBehaviour
 
     private void stop()
     {
+        //stop animations one game is done
         player.GetComponent<Animator>().enabled = false;
         enemy.GetComponent<Animator>().enabled = false;
         started = false;

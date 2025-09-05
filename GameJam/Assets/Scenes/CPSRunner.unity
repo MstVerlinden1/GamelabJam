@@ -401,7 +401,7 @@ MonoBehaviour:
   maxSize: 0.39
   minY: 3.24
   maxY: 4.95
-  enemyBuffIndex: 0.5
+  enemyBuffIndex: 0.3
   clicks: 0
   started: 1
 --- !u!1 &1291422977
