@@ -1766,15 +1766,40 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4738763958159556265, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: m_Volume
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5166407379055656683, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
       propertyPath: m_Name
       value: MicroGameSwitcher
       objectReference: {fileID: 0}
+    - target: {fileID: 7784561792303886708, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1306d6980e7c6bd4da868312bd490d5c, type: 3}
+    - target: {fileID: 7784561792303886708, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: loseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 49a14d609f1ad174e961c70ed1832fb3, type: 3}
+    - target: {fileID: 7784561792303886708, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1798647375}
+    - target: {fileID: 7784561792303886708, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+      propertyPath: addedSoundsSource
+      value: 
+      objectReference: {fileID: 1798647375}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+--- !u!82 &1798647375 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4738763958159556265, guid: 5b82346543ceb1d4589ec5f6603a7137, type: 3}
+  m_PrefabInstance: {fileID: 1798647374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private InputActionReference _inputActionReference;
     private InputAction _menuAction;
+    
     
     # region Create Instance
     

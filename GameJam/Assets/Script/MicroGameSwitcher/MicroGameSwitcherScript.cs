@@ -20,6 +20,11 @@ public class MicroGameSwitcherScript : MonoBehaviour
     private bool _UIUpdated = false;
     
     private bool _gameOver = false;
+
+    private bool takeOne;
+    
+    [SerializeField] private AudioSource addedSoundsSource;
+    [SerializeField] private AudioClip loseSound, winSound;
     
     #endregion
     
@@ -56,7 +61,18 @@ public class MicroGameSwitcherScript : MonoBehaviour
         else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Empty"))
         {
             if (GameManager.instance != null)
-                animator.SetBool("Win", GameManager.instance.winGame);
+            {animator.SetBool("Win", GameManager.instance.winGame);}
+                
+                if (animator.GetBool("Win") && takeOne)
+                {addedSoundsSource.PlayOneShot(winSound);}
+                else if (!animator.GetBool("Win") && takeOne)
+                {
+                    addedSoundsSource.PlayOneShot(loseSound);
+                }
+                else
+                {
+                    takeOne = true;
+                }
             animator.SetTrigger(_pNextAnimID);
         }
         else if (AnimatorPlaying())
