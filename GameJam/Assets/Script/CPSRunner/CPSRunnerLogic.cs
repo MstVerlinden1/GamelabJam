@@ -32,21 +32,29 @@ public class CPSRunnerLogic : MonoBehaviour
 
     private void Update()
     {
-        if (started)
+        if (GameManager.instance != null)
         {
-            timer += Time.deltaTime;
+            if (GameManager.instance.gamePlayType != GamePlayType.Running && GameManager.instance.startGame)
+                return;
+            
+            started = GameManager.instance.startGame;
         }
+        else started = true;
         if (timer >= maxTime && clicks <= maxClicks && started)
         {
             //lose
             print("lose");
             stop();
+            if (GameManager.instance != null)
+                GameManager.instance.winGame = false;
         }
         if (timer <= maxTime && clicks >= maxClicks && started)
         {
             //YOU WINNNNNN WOWOWEEEEE
             print("win");
             stop();
+            if (GameManager.instance != null)
+                GameManager.instance.winGame = true;
         }
     }
     void OnClick()
