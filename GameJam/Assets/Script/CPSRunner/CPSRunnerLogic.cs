@@ -36,15 +36,17 @@ public class CPSRunnerLogic : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        if (timer >= maxTime && clicks <= maxClicks)
+        if (timer >= maxTime && clicks <= maxClicks && started)
         {
             //lose
             print("lose");
+            stop();
         }
-        if (timer <= maxTime && clicks >= maxClicks)
+        if (timer <= maxTime && clicks >= maxClicks && started)
         {
             //YOU WINNNNNN WOWOWEEEEE
             print("win");
+            stop();
         }
     }
     void OnClick()
@@ -58,11 +60,17 @@ public class CPSRunnerLogic : MonoBehaviour
             float temp1 = maxY / maxClicks;
             player.position -= new Vector3(0, temp1, 0);
             enemy.position -= new Vector3(0, temp1 * enemyBuffIndex, 0);
-            if (clicks == maxClicks)
+            if (clicks > maxClicks)
             {
                 started = false;
             }
-            print("wiener");
         }
+    }
+
+    private void stop()
+    {
+        player.GetComponent<Animator>().enabled = false;
+        enemy.GetComponent<Animator>().enabled = false;
+        started = false;
     }
 }
